@@ -1,0 +1,28 @@
+{
+  "name": "study_graphql_nodejs",
+  "version": "1.0.0",
+  "description": "Practice graphql request with modules",
+  "main": "index.js",
+  "scripts": {
+    "start": "babel-node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyw017763/Study_GraphQL_NodeJS.git"
+  },
+  "author": "woni",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kyw017763/Study_GraphQL_NodeJS/issues"
+  },
+  "homepage": "https://github.com/kyw017763/Study_GraphQL_NodeJS#readme",
+  "dependencies": {
+    "@babel/core": "^7.6.4",
+    "@babel/node": "^7.6.3",
+    "@babel/preset-env": "^7.6.3",
+    "axios": "^0.19.0",
+    "babel-node": "0.0.1-security",
+    "graphql-request": "^1.8.2"
+  }
+}
