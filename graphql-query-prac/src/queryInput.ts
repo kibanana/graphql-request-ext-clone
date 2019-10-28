@@ -21,31 +21,32 @@ export async function showInputBoxMine() {
 	queryStr = await window.showInputBox({
         value: getSelectedText(window.activeTextEditor),
 		placeHolder: "Select your Query",
-		validateInput: text => {
-			text = getSelectedText(window.activeTextEditor);
+		validateInput: function(text: string) : any {
 			return text.startsWith("query") ? null : "Type your query with 'query'";
 		}
     });
     
 	variables = await window.showInputBox({
+        value: getSelectedText(window.activeTextEditor),
 		placeHolder: "Select your Variable",
-		validateInput: text => {
-			text = getSelectedText(window.activeTextEditor);
-			return (text.startsWith("{")) ? null : "Type your variable!";
-		}
+		validateInput: function(vText: string) : any {
+			return vText.startsWith("{") && vText.endsWith("}") ? null : "Type your variable";
+		},
 	});
 	
     return new Array(urlStr, queryStr, variables);
 }
 
+let cnt = 0;
 function getSelectedText(editor: vscode.TextEditor | undefined): string {
     let str = '';
     if(editor) {
 		str = (editor.document.getText(new vscode.Range(
-			editor.selections[0].start.line,
-			editor.selections[0].start.character,
-			editor.selections[0].end.line, 
-			editor.selections[0].end.character)));
-    }
+			editor.selections[cnt].start.line,
+			editor.selections[cnt].start.character,
+			editor.selections[cnt].end.line, 
+			editor.selections[cnt].end.character)));
+	}
+	cnt ++;
     return str;
 }

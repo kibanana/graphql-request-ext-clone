@@ -29,27 +29,28 @@ function showInputBoxMine() {
         queryStr = yield vscode_1.window.showInputBox({
             value: getSelectedText(vscode_1.window.activeTextEditor),
             placeHolder: "Select your Query",
-            validateInput: text => {
-                text = getSelectedText(vscode_1.window.activeTextEditor);
+            validateInput: function (text) {
                 return text.startsWith("query") ? null : "Type your query with 'query'";
             }
         });
         variables = yield vscode_1.window.showInputBox({
+            value: getSelectedText(vscode_1.window.activeTextEditor),
             placeHolder: "Select your Variable",
-            validateInput: text => {
-                text = getSelectedText(vscode_1.window.activeTextEditor);
-                return (text.startsWith("{")) ? null : "Type your variable!";
-            }
+            validateInput: function (vText) {
+                return vText.startsWith("{") && vText.endsWith("}") ? null : "Type your variable";
+            },
         });
         return new Array(urlStr, queryStr, variables);
     });
 }
 exports.showInputBoxMine = showInputBoxMine;
+let cnt = 0;
 function getSelectedText(editor) {
     let str = '';
     if (editor) {
-        str = (editor.document.getText(new vscode.Range(editor.selections[0].start.line, editor.selections[0].start.character, editor.selections[0].end.line, editor.selections[0].end.character)));
+        str = (editor.document.getText(new vscode.Range(editor.selections[cnt].start.line, editor.selections[cnt].start.character, editor.selections[cnt].end.line, editor.selections[cnt].end.character)));
     }
+    cnt++;
     return str;
 }
 //# sourceMappingURL=queryInput.js.map
