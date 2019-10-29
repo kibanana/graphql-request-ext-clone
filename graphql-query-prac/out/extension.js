@@ -34,7 +34,8 @@ function makeWebview(URL, QUERY, VARIABLE) {
         return;
     }
     let panel = vscode_1.window.createWebviewPanel('graphqlResponse', 'Graphql Response', vscode.ViewColumn.Two);
-    if (VARIABLE) {
+    if (VARIABLE && VARIABLE.toLowerCase() !== 'no') {
+        console.log(`It's variable zone`);
         graphql_request_1.request(URL, QUERY, JSON.parse(VARIABLE))
             .then((res) => {
             console.log(JSON.stringify(res, null, 4));
@@ -42,6 +43,7 @@ function makeWebview(URL, QUERY, VARIABLE) {
         });
     }
     else {
+        console.log(`It's not variable zone`);
         graphql_request_1.request(URL, QUERY)
             .then((res) => {
             console.log(JSON.stringify(res, null, 4));

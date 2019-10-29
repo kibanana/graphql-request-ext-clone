@@ -30,10 +30,13 @@ export async function showInputBoxMine() {
         value: getSelectedText(window.activeTextEditor),
 		placeHolder: "Select your Variable",
 		validateInput: function(vText: string) : any {
-			return vText.startsWith("{") && vText.endsWith("}") ? null : "Type your variable";
+			return (vText.startsWith("{") && vText.endsWith("}")) || vText.toLowerCase() === 'no' ? null : "Type your variable or Type 'no'";
 		},
 	});
 	
+	console.log(urlStr);
+	console.log(queryStr);
+	console.log(variables);
     return new Array(urlStr, queryStr, variables);
 }
 

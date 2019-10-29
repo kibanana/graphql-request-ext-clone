@@ -36,13 +36,15 @@ function makeWebview(URL: any, QUERY: any, VARIABLE: any): void {
 		vscode.ViewColumn.Two
     );
 
-    if(VARIABLE) {
+    if(VARIABLE && VARIABLE.toLowerCase() !== 'no') {
+        console.log(`It's variable zone`);
         request(URL, QUERY, JSON.parse(VARIABLE))
         .then((res) => {
             console.log(JSON.stringify(res, null, 4));
             panel.webview.html = getWebviewContent(res);
         });
     } else {
+        console.log(`It's not variable zone`);
         request(URL, QUERY)
         .then((res) => {
             console.log(JSON.stringify(res, null, 4)); 
