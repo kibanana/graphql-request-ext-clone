@@ -45,7 +45,7 @@
     "code-highlight-linenums": "^0.2.1",
     "graphql-request": "^1.8.2",
     "highlight.js": "^9.15.10",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.21"
   },
   "author": "",
   "license": "ISC"
